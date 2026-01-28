@@ -20,7 +20,16 @@
 
 
 function countOccurrences(arr) {
-  // Your code here
+  const ansobj = {};
+  arr.forEach(val => {
+    if (ansobj[val]) {
+      ansobj[val]++;
+    } else {
+      ansobj[val] = 1;
+    }
+  })
+
+  return ansobj;
 }
 
 module.exports = countOccurrences;

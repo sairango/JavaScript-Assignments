@@ -26,7 +26,17 @@
 */
 
 function isPerfectNumber(num) {
-  // Your code here
+  let properDivisors = [];
+  for (let i = 1; i < num; i++){
+    if (num % i === 0) {
+      properDivisors.push(i);
+    }
+  }
+  let arrsum = 0;
+  properDivisors.forEach(element => {
+    arrsum+=element
+  });
+  return arrsum === num;
 }
 
 module.exports = { isPerfectNumber };

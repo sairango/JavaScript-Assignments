@@ -21,7 +21,33 @@
   - `npm run test-compressString`
 */
 function compression(str) {
-  // Your code here
-}
+  let comp = "";
+  const n = str.length;
+  if (n === 0) {
+    return "";
+  }
+  let i = 0;
+  
+  while (i < n) {
 
+    let curr = str[i];
+    let currcnt = 0;
+
+    while (i<n && str[i] === curr) {
+      currcnt++;
+      i++;
+    }
+    
+    if (currcnt > 1) {
+      comp = comp + curr + currcnt;
+    } else {
+      comp = comp + curr;
+    }
+
+    
+
+  }
+  return comp;
+}
+console.log(compression("abc"))
 module.exports = compression;

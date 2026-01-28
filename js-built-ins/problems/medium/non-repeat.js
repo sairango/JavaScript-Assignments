@@ -22,5 +22,24 @@
 */
 function nonrepeat(str) {
   // Your code here
+  const freq = {};
+  const arr = str.split("");
+  // console.log(arr);
+  arr.forEach(element => {
+    if (freq[element]) {
+      freq[element]++;
+    } else {
+      freq[element] = 1;
+    }
+  });
+
+  for (const key in freq) { 
+  if (freq[key] === 1) {
+    return key;
+  }
 }
+
+  return null;
+}
+// console.log("abcab")
 module.exports = nonrepeat;

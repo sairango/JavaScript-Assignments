@@ -22,7 +22,30 @@
 */
 
 function reverseInteger(num) {
-  // Your code here
+  let negSign = false;
+  let x = 0;
+  let multiPlier = 1;
+
+  if (num < 0) {
+    negSign = true;
+    num = -1 * num;
+  }
+  
+
+  while (num > 0) {
+    // console.log( `x ${x} +  (num % 10) ${num % 10}  * multiPlier ${multiPlier}`);
+    // x = x + (num % 10) * multiPlier;
+    x = x * 10 + (num % 10);
+    num = Math.floor( num / 10);
+    multiPlier *= 10;
+  }
+  if (negSign) {
+    return -1 * x;
+  }
+  return x;
+  
+  
 }
+reverseInteger(4562432424)
 
 module.exports = reverseInteger;
