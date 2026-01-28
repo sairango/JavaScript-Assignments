@@ -334,16 +334,277 @@
 // }, []);
 // console.log(filtered);
 
-function calculateTotalSpentByCategory(transactions) {
-    const output = transactions.reduce((accu , item) => {
-        if (!accu[item.category]) {
-            accu[item.category] = item.price;
-        } else {
-            accu[item.category] += item.price;
-        }
-    } ,{})
-    
-  return Object.entries(output);
-}
+//prblm 7 Chunk object entries into groups of size
+// const obj = { a: 1, b: 2, c: 3, d: 4 };
+// const size = 2;
+// const objarr = Object.entries(obj);
+// console.log(objarr);
+// const final = [];
+// for (let i = 1; i <= objarr.length;){
+//     const temp = [];
+//     for ( let j = 1; j <= 2; j++){
+//         temp.push(objarr[i - 1]);
+//         i += 1;
+//     }
+//     final.push(temp);
+// }
+// console.log(final);
 
-module.exports = calculateTotalSpentByCategory;
+//prbm 7.1 Find longest string among object values
+// const obj = { a: "apple", b: "banana", c: "kiwi" };
+// let largeststring = "";
+// for (const keys in obj) {
+//     if (obj[keys].length > largeststring.length) {
+//         largeststring = obj[keys];
+//     }
+// }
+// console.log(largeststring)
+
+//prblm 8
+//Convert the object where languages are the top-level keys, and inside each are translation strings by key into an object where translation
+// keys are the top-level keys, and inside each you store values per language [HARD**]
+// const obj = {
+//   en: { hello: "Hello", bye: "Goodbye" },
+//   fr: { hello: "Bonjour", bye: "Au revoir" },
+//   es: { hello: "Hola" },
+// };
+
+// const objarr = Object.entries(obj).reduce((accu, [lang , wordsobj]) => {
+//     Object.keys(wordsobj).forEach(word => {
+
+//         if (accu[word]) {
+//             accu[word][lang] = wordsobj[word];
+//         } else {
+//             accu[word] = {};
+//             accu[word][lang] = wordsobj[word];
+//         }
+//     })
+//     return accu;
+// } , {});
+// console.log(objarr);
+
+//prblm 9 Build index of ids grouped by category
+// const arr = [
+//   { id: 1, category: "fruit" },
+//   { id: 2, category: "veggie" },
+//   { id: 3, category: "fruit" },
+// ];
+
+// const finalobj = arr.reduce((accu, obj) => {
+//     if (accu[obj["category"]]) {
+//         accu[obj["category"]].push(obj["id"])
+//     } else {
+//         accu[obj["category"]] = [];
+//         accu[obj["category"]].push(obj["id"]);
+//     }
+//     return accu
+// }, {})
+// console.log(finalobj);
+
+//prblm 10
+// const obj = { a: { b: { c: 1, d: 2 } } }
+// const remove = "c";
+// function traverse(object, remove) {
+//     Object.keys(object).forEach(key => {
+//         if (key === remove) {
+//             delete object[key]
+//         }
+//         if (typeof object[key] === "object") {
+//             traverse(object[key] , remove)
+//         }
+//     })
+// }
+// traverse(obj , remove);
+// console.log(obj);
+
+//prblm 11
+// const obj3 = { a: { x: 1, y: { p: 1 } } };
+// const obj1 = { a: { x: 1, y: 2 } };
+// const obj2 = { a: { x: 1, y: 2 } };
+// function objDepth(object, inititalDepth) {
+//     let maxD = inititalDepth;
+//   Object.keys(object).forEach((key) => {
+//     if (typeof object[key] === "object") {
+//         const currD = objDepth(object[key], inititalDepth + 1);
+//         maxD = Math.max(maxD, currD);
+//       }
+//   });
+//     return maxD;
+// }
+
+// console.log(objDepth(obj1 , 1) === objDepth(obj2,1));
+
+//prblm 12 Deep flatten nested arrays inside object
+// const obj = { a: [1, [2, [3]]], b: [4, [5]] };
+// const ans = [];
+// function flattenArr(arra) {
+//     let result = [];
+//     arra.forEach(element => {
+//         if (Array.isArray(element)) {
+//             result = result.concat(flattenArr(element));
+//         } else {
+//             result.push(element);
+//         }
+//     });
+//     return result;
+// }
+
+// for (const key in obj) {
+//     obj[key] = flattenArr(obj[key]);
+// }
+// console.log(obj)
+
+//prblm 13 Find most repeated word across categories
+// const obj = { fruits: ["apple", "apple", "banana"], drinks: ["apple", "tea"] };
+// function mostR(object) {
+//     let maxreps = 0;
+//     let MRW;
+//     const wordcnt = {};
+//     Object.keys(object).forEach(key=>{
+//         object[key].forEach(item => {
+//             if (wordcnt[item]) {
+//                 wordcnt[item] += 1;
+//             } else {
+//                 wordcnt[item] = 1;
+//             }
+//         })
+//     })
+
+//     Object.keys(wordcnt).forEach(key => {
+//         if (wordcnt[key] > maxreps) {
+//             MRW = key;
+//             maxreps = wordcnt[key]
+//         }
+//     })
+
+//     return MRW;
+// }
+// console.log(mostR(obj))
+
+//prblm 14 Find intersection of all arrays in object
+// const obj = { a: [1, 2, 3], b: [2, 3, 4], c: [3, 4, 5] };
+
+// const compK = "a";
+// let intersection = obj[compK];
+// Object.keys(obj).forEach(key => {
+//     if (key === compK) {
+//         return;
+//     }
+//     intersection = intersection.filter(item => obj[key].includes(item));
+
+// })
+// console.log(intersection)
+
+//prblm 15 Deep merge two nested objects
+// function mergeIn(object1, object2) {
+//   Object.keys(object1).forEach((key) => {
+//     if (object2[key]) {
+//       Object.keys(object1[key]).forEach((nestkey) => {
+//         object2[key][nestkey] = object1[key][nestkey];
+//       });
+//     } else {
+//       object2[key] = object1[key];
+//     }
+//   });
+// }
+// const obj1 = { a: { x: 1, y: 2 } };
+// const obj2 = { a: { y: 3, z: 4 } };
+
+// const combO = {};
+// mergeIn(obj1, combO);
+// mergeIn(obj2, combO);
+// console.log(combO);
+
+//prblm 16 Nested object destructuring
+// const obj = { user: { profile: { name: "Alice", age: 25 } } };
+// function nestedD(object) {
+//     for (key in object) {
+//         if (typeof object[key] === "object") {
+//             nestedD(object[key])
+//         } else {
+//             console.log(object[key]);
+//         }
+//     }
+// }
+// nestedD(obj);
+
+//prblm 17
+// const obj = { a: 10, b: 50, c: 30, d: 40 };
+// const N = 2;
+// const ans = [];
+
+// const sorted = Object.entries(obj).sort(([key1, val1], [key2, val2]) => {
+//     if (val1 > val2) {
+//         return -1
+//     } else {
+//         return 1
+//     }
+// })
+// for (let i = 0; i < N; i++){
+//     ans.push(sorted[i][0])
+// }
+// console.log(ans);
+
+//prblm 18 Sort array of objects by name then age
+// const arr = [
+//   { name: "Alice", age: 30 },
+//   { name: "Bob", age: 25 },
+//   { name: "Alice", age: 22 },
+// ];
+
+// const sorted = arr.sort(
+//   ({ name: name1, age: age1 }, { name: name2, age: age2 }) => {
+//     if (name1 > name2) {
+//       return 1;
+//     } else if (name1 < name2) {
+//       return -1;
+//     } else if (name1 === name2) {
+//       if (age1 > age2) {
+//         return 1;
+//       } else {
+//         return -1;
+//       }
+//     }
+//   },
+// );
+// console.log(sorted);
+
+// prblm 19 Reconcile two lists (missing + extra items)
+// const expected = ["a", "b", "c"];
+// const actual = ["b", "c", "d"];
+
+// const ansobj = {};
+// expected.forEach(val => {
+//     if (!actual.includes(val)) {
+//         if (ansobj["missing"]) {
+//             ansobj["missing"].push(val);
+//         } else {
+//             ansobj["missing"] = [];
+//             ansobj["missing"].push(val);
+//         }
+//     }
+// });
+// actual.forEach(val => {
+//     if (!expected.includes(val)) {
+//       if (ansobj["extra"]) {
+//         ansobj["extra"].push(val);
+//       } else {
+//         ansobj["extra"] = [];
+//         ansobj["extra"].push(val);
+//       }
+//     }
+// })
+// console.log(ansobj);
+
+//prblm 20 Merge two objects (no sum, override second)
+// const obj1 = { a: 10, b: 20 };
+// const obj2 = { a: 5, c: 15 };
+// const merged = { ...obj2 , ...obj1 };
+// // Object.keys(obj2).forEach((key2) => {
+// //   Object.keys(merged).forEach((key1) => {
+// //     merged[key2] = obj2[key2];
+
+// //     merged[key2] = obj2[key2];
+// //   });
+// // });
+// console.log(merged);
