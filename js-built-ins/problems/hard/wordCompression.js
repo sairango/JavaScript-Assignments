@@ -20,10 +20,31 @@
   Once you've implemented the logic, test your code by running
   - `npm run test-compressWord`
 */
-
+// - Input: ["apple", "apple", "banana", "banana", "banana", "cherry", "apple", "apple"]
+// - Output: ["apple2", "banana3", "cherry", "apple2"]
 
 function compressWords(arr) {
-  // Your code here
+  const ans = [];
+  let n = arr.length;
+  if (n === 0) {
+    return [];
+  }
+  for (let i = 0; i < n; i++){
+    let curr = arr[i];
+    let currlen = 1;
+
+    while (i + 1 < n && arr[i + 1] === curr) {
+      currlen++;
+      i++;
+    }
+
+    if (currlen > 1) {
+      ans.push(curr + currlen);
+    } else {
+      ans.push(curr);
+    }
+  }
+  return ans;
 }
 
 

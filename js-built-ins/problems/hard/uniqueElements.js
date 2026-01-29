@@ -19,7 +19,17 @@
 */
 
 function getUniqueElements(arr) {
-  
-}
+  // let freqmap = {};
+  let ans=[]
+  arr.forEach(element => {
+    if (!ans.includes(element)) {
+      ans.push(element)
+    }
+    
+  });
+  return ans;
 
+  // console.log(ans);
+}
+getUniqueElements([10, 20, 30, 10, 40, 20]);
 module.exports = getUniqueElements;
